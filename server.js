@@ -5,21 +5,18 @@ const mssql = require('mssql/msnodesqlv8');
 const cors = require('cors');
 
 app.use(express.json());
-// app.use(express.urlencode())
-
 app.use(cors());
 
 const conn = new mssql.ConnectionPool({
     driver: "msnodesqlv8",
     server: 'localhost',
-    password: '',
-    database: 'WebBackEnd',
+    database: 'DEVCORP',
     user: 'sa',
     password: 'Sql2@19'
 })
 
 
-app.get('/con', (req,res) => {
+app.get('/', (req,res) => {
   try{
     if(conn){
       res.status(200).send('Conectado');
@@ -29,13 +26,9 @@ app.get('/con', (req,res) => {
   }
 })
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-
-app.get('/cliente', (req, res) => {
+app.get('/correntista', (req, res) => {
   conn.connect().then((pool) => {
-    const queryStr = 'SELECT * FROM Clientes'
+    const queryStr = 'SELECT * FROM correntistas'
     // const queryStr = 'SELECT * FROM produto'
     pool.query(queryStr).then((rows) => {
       res.send(rows.recordset)
@@ -43,10 +36,10 @@ app.get('/cliente', (req, res) => {
   })
 })
 
-app.delete('/cliente/:id', (req, res) => {
+app.delete('/correntista/:id', (req, res) => {
   conn.connect().then((pool) => {
     const id = req.params.id;
-    const queryStr = `DELETE FROM Clientes WHERE Codigo = ${id}`
+    const queryStr = `DELETE FROM correntistas WHERE Codigo = ${id}`
     // const queryStr = 'SELECT * FROM produto'
     pool.query(queryStr).then((rows) => {
       res.status(204).send('ok')
@@ -54,14 +47,14 @@ app.delete('/cliente/:id', (req, res) => {
   })
 })
 
-app.post('/cliente', (req, res) => {
+app.post('/correntista', (req, res) => {
   const {
     codigo,
     nome,
     email
   } = req.body;
   conn.connect().then((pool) => {
-    const queryStr = `INSERT INTO Clientes (Codigo, Nome, Email) VALUES(${codigo}, ${nome}, ${email})`
+    const queryStr = `INSERT INTO correntista (Codigo, Nome, Email) VALUES(${codigo}, ${nome}, ${email})`
     // const queryStr = 'SELECT * FROM produto'
     pool.query(queryStr).then((rows) => {
       res.status(201).send(rows.recordset)
@@ -69,10 +62,10 @@ app.post('/cliente', (req, res) => {
   })
 })
 
-app.get('/cliente/:id', (req, res) => {
+app.get('/correntista/:id', (req, res) => {
   const id = req.params.id;
   conn.connect().then((pool) => {
-    const queryStr = `SELECT * FROM Clientes WHERE Codigo = ${id}`
+    const queryStr = `SELECT * FROM correntista WHERE Codigo = ${id}`
     // const queryStr = 'SELECT * FROM produto'
     pool.query(queryStr).then((rows) => {
       if(rows.recordset.length > 0){
@@ -84,14 +77,14 @@ app.get('/cliente/:id', (req, res) => {
   })
 })
 
-app.put('/cliente/:id', (req, res) => {
+app.put('/correntista/:id', (req, res) => {
   const codigo = req.params.id;
   const {
     nome,
     email
   } = req.body;
   conn.connect().then((pool) => {
-    const queryStr = `UPDATE Clientes SET Codigo = ${codigo},
+    const queryStr = `UPDATE correntista SET Codigo = ${codigo},
     Nome = ${nome}, Email = ${email} WHERE Codigo = ${codigo}`
     pool.query(queryStr).then((rows) => {
       if(rows.recordset.length > 0){
