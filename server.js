@@ -10,7 +10,7 @@ app.use(cors());
 const conn = new mssql.ConnectionPool({
     driver: "msnodesqlv8",
     server: 'localhost',
-    database: 'DEVCORP',
+    database: 'DEVCORP2',
     user: 'sa',
     password: 'Sql2@19'
 })
@@ -29,7 +29,15 @@ app.get('/', (req,res) => {
 app.get('/correntista', (req, res) => {
   conn.connect().then((pool) => {
     const queryStr = 'SELECT * FROM correntistas'
-    // const queryStr = 'SELECT * FROM produto'
+    pool.query(queryStr).then((rows) => {
+      res.send(rows.recordset)
+    })
+  })
+})
+
+app.get('/movimentacao', (req, res) => {
+  conn.connect().then((pool) => {
+    const queryStr = 'SELECT * FROM movimentacoes'
     pool.query(queryStr).then((rows) => {
       res.send(rows.recordset)
     })
@@ -40,7 +48,6 @@ app.delete('/correntista/:id', (req, res) => {
   conn.connect().then((pool) => {
     const id = req.params.id;
     const queryStr = `DELETE FROM correntistas WHERE Codigo = ${id}`
-    // const queryStr = 'SELECT * FROM produto'
     pool.query(queryStr).then((rows) => {
       res.status(204).send('ok')
     })
@@ -55,7 +62,19 @@ app.post('/correntista', (req, res) => {
   } = req.body;
   conn.connect().then((pool) => {
     const queryStr = `INSERT INTO correntista (Codigo, Nome, Email) VALUES(${codigo}, ${nome}, ${email})`
-    // const queryStr = 'SELECT * FROM produto'
+    pool.query(queryStr).then((rows) => {
+      res.status(201).send(rows.recordset)
+    })
+  })
+})
+
+app.post('/deposito', (req, res) => {
+  const {
+    id,
+    valor
+  } = req.body;
+  conn.connect().then((pool) => {
+    const queryStr = `EXEC spDeposito ${id}, ${valor}`
     pool.query(queryStr).then((rows) => {
       res.status(201).send(rows.recordset)
     })
@@ -65,8 +84,21 @@ app.post('/correntista', (req, res) => {
 app.get('/correntista/:id', (req, res) => {
   const id = req.params.id;
   conn.connect().then((pool) => {
-    const queryStr = `SELECT * FROM correntista WHERE Codigo = ${id}`
-    // const queryStr = 'SELECT * FROM produto'
+    const queryStr = `SELECT * FROM correntistas WHERE CodigoCorrentista = ${id}`
+    pool.query(queryStr).then((rows) => {
+      if(rows.recordset.length > 0){
+        res.send(rows.recordset[0]);
+      }else {
+        res.send(404).status(rows.recordset);
+      }
+    })
+  })
+})
+
+app.get('/movimentacao/:id', (req, res) => {
+  const id = req.params.id;
+  conn.connect().then((pool) => {
+    const queryStr = `SELECT * FROM Movimentacoes WHERE CodigoMovimentacao = ${id}`
     pool.query(queryStr).then((rows) => {
       if(rows.recordset.length > 0){
         res.send(rows.recordset[0]);
