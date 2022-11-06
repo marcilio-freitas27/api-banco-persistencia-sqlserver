@@ -8,11 +8,16 @@ app.use(express.json());
 app.use(cors());
 
 const conn = new mssql.ConnectionPool({
+    // driver: "msnodesqlv8",
+    // server: 'localhost',
+    // database: 'DEVCORP',
+    // user: 'sa',
+    // password: 'Sql2@19'
     driver: "msnodesqlv8",
-    server: 'localhost',
+    server: 'SISTEMA-SSD\\SQLEXPRESS',
     database: 'DEVCORP2',
     user: 'sa',
-    password: 'Sql2@19'
+    password: '_43690'
 })
 
 
@@ -55,13 +60,11 @@ app.delete('/correntista/:id', (req, res) => {
 })
 
 app.post('/correntista', (req, res) => {
-  const {
-    codigo,
-    nome,
-    email
-  } = req.body;
+    const nome =  '\'' + req.body.NomeCorrentista + '\'';
+    const email =  '\'' + req.body.Email + '\'';
+    const saldo =  '\'' + req.body.Saldo + '\'';
   conn.connect().then((pool) => {
-    const queryStr = `INSERT INTO correntista (Codigo, Nome, Email) VALUES(${codigo}, ${nome}, ${email})`
+    const queryStr = `INSERT INTO correntistas (NomeCorrentista, Email, Saldo) VALUES(${nome}, ${email}, ${saldo})`
     pool.query(queryStr).then((rows) => {
       res.status(201).send(rows.recordset)
     })
@@ -69,12 +72,10 @@ app.post('/correntista', (req, res) => {
 })
 
 app.post('/deposito', (req, res) => {
-  const {
-    id,
-    valor
-  } = req.body;
+  const codigo =  '\'' + req.body.CodigoCorrentista + '\'';
+  const valor =  '\'' + req.body.Valor + '\'';
   conn.connect().then((pool) => {
-    const queryStr = `EXEC spDeposito ${id}, ${valor}`
+    const queryStr = `EXEC spDeposito ${codigo}, ${valor}`
     pool.query(queryStr).then((rows) => {
       res.status(201).send(rows.recordset)
     })
