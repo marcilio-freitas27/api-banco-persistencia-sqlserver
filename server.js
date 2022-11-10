@@ -8,16 +8,16 @@ app.use(express.json());
 app.use(cors());
 
 const conn = new mssql.ConnectionPool({
-    // driver: "msnodesqlv8",
-    // server: 'localhost',
-    // database: 'DEVCORP',
-    // user: 'sa',
-    // password: 'Sql2@19'
     driver: "msnodesqlv8",
-    server: 'SISTEMA-SSD\\SQLEXPRESS',
+    server: 'localhost',
     database: 'DEVCORP2',
     user: 'sa',
-    password: '_43690'
+    password: 'Sql2@19'
+    // driver: "msnodesqlv8",
+    // server: 'SISTEMA-SSD\\SQLEXPRESS',
+    // database: 'DEVCORP2',
+    // user: 'sa',
+    // password: '_43690'
 })
 
 
@@ -76,6 +76,18 @@ app.post('/deposito', (req, res) => {
   const valor =  '\'' + req.body.Valor + '\'';
   conn.connect().then((pool) => {
     const queryStr = `EXEC spDeposito ${codigo}, ${valor}`
+    pool.query(queryStr).then((rows) => {
+      res.status(201).send(rows.recordset)
+    })
+  })
+})
+
+app.post('/transferencia/:id', (req, res) => {
+  const codigoOrigem = req.params.id;
+  const codigoDestino = req.body.CodigoCorrentistaDestino;
+  const valor =  req.body.Valor;
+  conn.connect().then((pool) => {
+    const queryStr = `EXEC spTransferencia ${codigoOrigem}, ${codigoDestino}, ${valor}`
     pool.query(queryStr).then((rows) => {
       res.status(201).send(rows.recordset)
     })
