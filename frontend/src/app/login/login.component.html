@@ -1,0 +1,17 @@
+<p-card>
+    <h1>Login no sistema</h1>
+    <hr />
+    <form (ngSubmit)="submit()">
+      <span>
+        Login: <input name="usuario" [(ngModel)]="usuario" type="text" pInputText />
+      </span>
+      <br><br>
+      <span>
+        Password:
+        <p-password name="senha" [(ngModel)]="senha" [toggleMask]="true"></p-password>
+      </span>
+      <p>
+        <button type="submit" pButton label="Entrar"></button>
+      </p>
+    </form>
+  </p-card>
