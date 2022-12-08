@@ -29,13 +29,13 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.loginService.onLogin(this.usuario, this.senha)) {
-      //redireciona para a raiz
-      this.route.navigate(['/']);
-      this.showSuccess(`Bem vindo ${this.usuario}`);
-    }else {
-      this.showError('Usuario ou senha incorretos.');
-    }
+    // if (this.loginService.onLogin(this.usuario, this.senha)) {
+    //   //redireciona para a raiz
+    //   this.route.navigate(['/']);
+    //   this.showSuccess(`Bem vindo ${this.usuario}`);
+    // }else {
+    //   this.showError('Usuario ou senha incorretos.');
+    // }
   }
 
   submit(): void {

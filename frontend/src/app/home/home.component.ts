@@ -7,7 +7,6 @@ import { AppService } from '../app.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  title = 'frontend';
   correntistas: any[];
   show: boolean
   constructor(private app: AppService) {

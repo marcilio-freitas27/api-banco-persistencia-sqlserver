@@ -33,7 +33,7 @@ app.get('/', (req,res) => {
   app.delete('/correntista/:id', (req, res) => {
     conn.connect().then((pool) => {
       const id = req.params.id;
-      const queryStr = `DELETE FROM correntistas WHERE Codigo = ${id}`
+      const queryStr = `DELETE FROM correntistas WHERE CodigoCorrentista = ${id}`
       pool.query(queryStr).then((rows) => {
         res.status(204).send('ok')
       })
@@ -87,8 +87,8 @@ app.get('/', (req,res) => {
   
   app.post('/transferencia/:id', (req, res) => {
     const codigoOrigem = req.params.id;
-    const codigoDestino = req.body.CodigoCorrentistaDestino;
-    const valor =  req.body.Valor;
+    const codigoDestino = '\'' + req.body.CodigoCorrentistaDestino + '\'';
+    const valor =  '\'' + req.body.Valor + '\'';
     conn.connect().then((pool) => {
       const queryStr = `EXEC spTransferencia ${codigoOrigem}, ${codigoDestino}, ${valor}`
       pool.query(queryStr).then((rows) => {
