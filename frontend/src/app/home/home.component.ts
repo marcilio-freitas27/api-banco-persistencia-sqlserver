@@ -24,4 +24,13 @@ export class HomeComponent implements OnInit {
     this.show = !this.show;
   }
 
+  cadastrarCorrentista(nome: string, email:string, saldo:any): void{
+    this.app.sendCorrentistas(
+      nome,
+      email,
+      saldo
+    ).subscribe((data => {
+      console.log(data)}))
+  }
+
 }

@@ -6,13 +6,19 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { DepositoComponent } from './operacoes/deposito/deposito/deposito.component';
+import { SaqueComponent } from './operacoes/saque/saque.component';
+import { PagamentoComponent } from './operacoes/pagamento/pagamento.component';
+import { TransferenciaComponent } from './operacoes/transferencia/transferencia.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    DepositoComponent
+    DepositoComponent,
+    SaqueComponent,
+    PagamentoComponent,
+    TransferenciaComponent
   ],
   imports: [
     BrowserModule,

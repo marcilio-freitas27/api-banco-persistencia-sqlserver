@@ -1,3 +1,4 @@
+import { AppService } from './../../../app.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DepositoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private app: AppService) { }
 
   ngOnInit(): void {
+  }
+
+  deposito(id: any, valor: any): void{
+    this.app.sendDeposito(
+      id,
+      valor
+    ).subscribe(data =>{
+      console.log(data)
+    })
   }
 
 }

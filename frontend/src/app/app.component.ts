@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'frontend';
+  title = 'Angular Bank v1.0.0 - Marcílio Freitas';
   constructor(){
   }
 

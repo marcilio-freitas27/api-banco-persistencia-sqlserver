@@ -1,14 +1,14 @@
 <form class="container form-control">
-  <h1>Depósito</h1>
+  <h1>Pagamento</h1>
     <div>
       <label for="id">Código: </label>
-      <input class="form-control" id="id" name="id" #id>
+      <input class="form-control" id="id" name="id" type="text" #id>
       <br>
       <label for="valor">Valor: </label>
       <input class="form-control" id="valor" name="valor" type="text" #valor>
     </div>
     <br>
     <div>
-      <button class="btn btn-danger" (click)="deposito(id.value, valor.value)">Depositar</button>
+      <button class="btn btn-danger" (click)="pagamento(id.value, valor.value)">Pagar</button>
     </div>
   </form>

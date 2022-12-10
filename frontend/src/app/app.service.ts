@@ -14,4 +14,33 @@ export class AppService {
   getCorrentistas(): Observable<any>{
     return this.http.get<any>(`${this.url}/correntista`);
   }
+
+  sendCorrentistas(nome: string, email: string, saldo: any): Observable<any>{
+    return this.http.post(`${this.url}/correntista`, {
+      "NomeCorrentista": nome, 
+      "Email": email, 
+      "Saldo": saldo}
+    );
+  }
+
+  sendDeposito(id: any, valor: any): Observable<any>{
+    return this.http.post(`${this.url}/deposito`, {
+      "CodigoCorrentista": id, 
+      "Valor": valor
+    });
+  }
+
+  sendSaque(id: any, valor: any): Observable<any>{
+    return this.http.post(`${this.url}/saque`, {
+      "CodigoCorrentista": id, 
+      "Valor": valor
+    });
+  }
+
+  sendPagamento(id: any, valor: any): Observable<any>{
+    return this.http.post(`${this.url}/pagamento`, {
+      "CodigoCorrentista": id, 
+      "Valor": valor
+    });
+  }
 }
