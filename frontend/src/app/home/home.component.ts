@@ -16,21 +16,15 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.app.getCorrentistas().subscribe({
-      next: (res: any) => this.correntistas = res
+      next: (res: any) => {
+        this.correntistas = res,
+        console.log(res)
+      }
     });
   }
 
   showSaldo(){
     this.show = !this.show;
-  }
-
-  cadastrarCorrentista(nome: string, email:string, saldo:any): void{
-    this.app.sendCorrentistas(
-      nome,
-      email,
-      saldo
-    ).subscribe((data => {
-      console.log(data)}))
   }
 
 }

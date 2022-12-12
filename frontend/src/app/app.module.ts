@@ -9,6 +9,8 @@ import { DepositoComponent } from './operacoes/deposito/deposito/deposito.compon
 import { SaqueComponent } from './operacoes/saque/saque.component';
 import { PagamentoComponent } from './operacoes/pagamento/pagamento.component';
 import { TransferenciaComponent } from './operacoes/transferencia/transferencia.component';
+import { CorrentistaComponent } from './cadastros/correntista/correntista.component';
+import { ExtratoComponent } from './operacoes/extrato/extrato.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { TransferenciaComponent } from './operacoes/transferencia/transferencia.
     DepositoComponent,
     SaqueComponent,
     PagamentoComponent,
-    TransferenciaComponent
+    TransferenciaComponent,
+    CorrentistaComponent,
+    ExtratoComponent
   ],
   imports: [
     BrowserModule,

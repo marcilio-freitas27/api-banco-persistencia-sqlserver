@@ -1,3 +1,4 @@
+import { AppService } from 'src/app/app.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TransferenciaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private app: AppService) { }
 
   ngOnInit(): void {
+  }
+
+  transferencia(id: any, idDestino: any, valor:any ):void{
+    this.app.sendTransferencia(
+      id,
+      idDestino,
+      valor
+    );
   }
 
 }

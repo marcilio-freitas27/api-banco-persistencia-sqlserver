@@ -1,0 +1,17 @@
+<form class=" container form-control">
+    <h2>Cadastrar novo cliente</h2>
+    <div>
+      <label for="cliente">Nome: </label>
+      <input class="form-control" id="cliente" name="cliente" type="text" #nome>
+      <br>
+      <label for="email">E-mail: </label>
+      <input class="form-control" id="email" name="email" type="text" #email>
+      <br>
+      <label for="saldo">Saldo: </label>
+      <input class="form-control" id="saldo" name="saldo" type="text" #saldo>
+    </div>
+    <br>
+    <div>
+      <button class="btn btn-danger" (click)="cadastrarCorrentista(nome.value, email.value, saldo.value)">Cadastrar</button>
+    </div>
+  </form>
