@@ -12,7 +12,17 @@
     </div>
     <br>
     <div>
-      <button class="btn btn-danger" (click)="extrato(id.value, dataInicio.value, dataFim.value)">Extrato</button>
+      <button class="btn btn-danger" (click)="extrato(id.value, '01/12/2022', '14/12/2022')">Extrato</button>
     </div>
   </form>
+<br>
+  <div [hidden]="modal" class="container form-control">
+    <div class="form-control">
+        <h5>Extrato</h5>  
+    </div>
+    <div class="form-control">
+      {{extratoCorrentista}}
+    </div>
+  </div>
+  
 

@@ -8,9 +8,17 @@ import { AppService } from 'src/app/app.service';
 })
 export class ExtratoComponent implements OnInit {
 
-  constructor(private app: AppService) { }
+  extratoCorrentista: any[];
+  modal: boolean = true;
+  id: any;
+  dataInicio: any;
+  dataFim: any
+  constructor(private app: AppService) { 
+    this.extratoCorrentista = [];
+  }
 
   ngOnInit(): void {
+    
   }
 
   extrato(nome: any, dataInicial: any, dataFinal:any):void{
@@ -19,6 +27,12 @@ export class ExtratoComponent implements OnInit {
       dataInicial,
       dataFinal
     );
+    this.modal = false;
+    this.app.sendExtrato(nome, dataInicial,dataFinal).subscribe({
+      next: (res: any) => {
+        this.extratoCorrentista = res
+      }
+    });
   }
 
 }
