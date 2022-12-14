@@ -50,4 +50,15 @@ export class AppService {
       "Valor": saldo}
     );
   }
+
+
+
+  sendExtrato(nome: any, dataInicial: any, dataFinal: any): Observable<any>{
+    let headers = {
+      "CogigoCorrentista": nome,
+      "DataInicial": dataInicial,
+      "DataFinal": dataFinal
+    }
+    return this.http.get<any>(`${this.url}/extrato`,{headers});
+  }
 }

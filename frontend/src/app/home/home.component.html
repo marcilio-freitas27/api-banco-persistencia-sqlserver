@@ -1,14 +1,14 @@
 
 <h1>Bem-vindos</h1>
 <div class="containet form-control">
-  <div>
+  <div *ngFor="let cor of correntistas;">
     <p>
-      Nome: {{ correntistas[0].NomeCorrentista }}
+      Nome: {{ cor.NomeCorrentista }}
     </p>
     <button class="btn btn-danger" (click)="showSaldo()">Mostrar Saldo</button>
     <span [hidden]="!show">
       <br><br>
-      Saldo: R${{ correntistas[0].Saldo }}
+      Saldo: R${{ cor.Saldo }}
     </span>
     <br><br>
   </div>

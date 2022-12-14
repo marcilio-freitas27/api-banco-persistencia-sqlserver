@@ -1,1 +1,18 @@
-<p>extrato works!</p>
+<form class=" container form-control">
+    <h2>Extrato</h2>
+    <div>
+      <label for="cliente">Id </label>
+      <input class="form-control" id="id" name="id" type="text" #id>
+      <br>
+      <label for="inicio">Data Inicial: </label>
+      <input type="date" class="form-control" id="inicio" name="email" #dataInicio>
+      <br>
+      <label for="final">Data FInal: </label>
+      <input type="date" class="form-control" id="final" name="saldo" #dataFim>
+    </div>
+    <br>
+    <div>
+      <button class="btn btn-danger" (click)="extrato(id.value, dataInicio.value, dataFim.value)">Extrato</button>
+    </div>
+  </form>
+

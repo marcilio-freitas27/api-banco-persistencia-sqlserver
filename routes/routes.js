@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const conn = require('../database/connection')
+const cors = require('cors');
 
 app.get('/', (req,res) => {
     try{

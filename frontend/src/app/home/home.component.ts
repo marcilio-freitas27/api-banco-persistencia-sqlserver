@@ -17,8 +17,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.app.getCorrentistas().subscribe({
       next: (res: any) => {
-        this.correntistas = res,
-        console.log(res)
+        this.correntistas = res
       }
     });
   }
