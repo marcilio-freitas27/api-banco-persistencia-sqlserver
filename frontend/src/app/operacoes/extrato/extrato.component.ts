@@ -21,18 +21,17 @@ export class ExtratoComponent implements OnInit {
     
   }
 
-  extrato(nome: any, dataInicial: any, dataFinal:any):void{
+  extrato(nome: any, dataInicial: any, dataFinal:any):void {
     this.app.sendExtrato(
       nome,
       dataInicial,
       dataFinal
-    );
-    this.modal = false;
-    this.app.sendExtrato(nome, dataInicial,dataFinal).subscribe({
-      next: (res: any) => {
+    ).subscribe({
+      next: (res: any[]) => {
         this.extratoCorrentista = res
       }
     });
+    this.modal = false;
   }
 
 }

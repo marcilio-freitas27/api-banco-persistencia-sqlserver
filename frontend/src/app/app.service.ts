@@ -54,11 +54,21 @@ export class AppService {
 
 
   sendExtrato(nome: any, dataInicial: any, dataFinal: any): Observable<any>{
+    const httpOptions : Object = {
+      headers: new HttpHeaders({
+        'Accept': 'text/html',
+        'Content-Type': 'text/plain; charset=utf-8'
+      }),
+      responseType: 'text',
+      body:{
+        "CogigoCorrentista": nome,
+        "DataInicial": dataInicial,
+        "DataFinal": dataFinal
+      }
+    };
     let headers = {
-      "CogigoCorrentista": nome,
-      "DataInicial": dataInicial,
-      "DataFinal": dataFinal
+      
     }
-    return this.http.get<any>(`${this.url}/extrato`,{headers});
+    return this.http.get<any>(`${this.url}/extrato`,httpOptions);
   }
 }
