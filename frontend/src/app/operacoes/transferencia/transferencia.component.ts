@@ -13,10 +13,10 @@ export class TransferenciaComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  transferencia(id: any, idDestino: any, valor:any ):void{
+  transferencia(codigo: any, codigoDestino: any, valor:any ):void{
     this.app.sendTransferencia(
-      id,
-      idDestino,
+      codigo,
+      codigoDestino,
       valor
     );
   }

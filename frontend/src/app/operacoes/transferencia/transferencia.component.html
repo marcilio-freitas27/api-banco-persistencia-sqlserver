@@ -2,16 +2,16 @@
     <h2>Transferência</h2>
     <div>
       <label for="cliente">Origem </label>
-      <input class="form-control" id="id" name="id" type="text" #id>
+      <input class="form-control" id="codigo" name="codigo" type="text" #codigo>
       <br>
       <label for="email">Destino: </label>
-      <input class="form-control" id="email" name="email" type="text" #idDestino>
+      <input class="form-control" id="codigoDestino" name="codigoDestino" type="text" #codigoDestino>
       <br>
       <label for="saldo">Valor: </label>
-      <input class="form-control" id="saldo" name="saldo" type="text" #valor>
+      <input class="form-control" id="valor" name="valor" type="text" #valor>
     </div>
     <br>
     <div>
-      <button class="btn btn-danger" (click)="transferencia(id.value, idDestino.value, valor.value)">Transferir</button>
+      <button class="btn btn-danger" (click)="transferencia(codigo.value, codigoDestino.value, valor.value)">Transferir</button>
     </div>
   </form>

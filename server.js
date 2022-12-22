@@ -23,9 +23,9 @@ app.post('/saque', routes)
 
 app.post('/pagamento', routes)
 
-app.post('/transferencia/:id',routes)
+app.post('/transferencia',routes)
 
-app.get('/extrato', routes)
+app.get('/extrato/:codigo/:dataInicial/:dataFinal', routes)
 
 app.get('/correntista/:id',routes)
 

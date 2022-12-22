@@ -8,29 +8,22 @@ import { AppService } from 'src/app/app.service';
 })
 export class ExtratoComponent implements OnInit {
 
-  extratoCorrentista: any[];
+  extratoCorrentista: any;
   modal: boolean = true;
-  id: any;
-  dataInicio: any;
-  dataFim: any
-  constructor(private app: AppService) { 
-    this.extratoCorrentista = [];
+  constructor(private app: AppService) {
   }
 
   ngOnInit(): void {
-    
+
   }
 
-  extrato(nome: any, dataInicial: any, dataFinal:any):void {
+  extrato(nome: any, dataInicial: any, dataFinal:any):any {
     this.app.sendExtrato(
       nome,
       dataInicial,
-      dataFinal
-    ).subscribe({
-      next: (res: any[]) => {
-        this.extratoCorrentista = res
-      }
-    });
+      dataFinal).subscribe({
+        next: (retorno: any) => this.extratoCorrentista = retorno
+      });
     this.modal = false;
   }
 

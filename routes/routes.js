@@ -85,28 +85,34 @@ app.get('/', (req,res) => {
       })
     })
   })
-  
-  app.post('/transferencia/:id', (req, res) => {
-    const codigoOrigem = req.params.id;
-    const codigoDestino = '\'' + req.body.CodigoCorrentistaDestino + '\'';
-    const valor =  '\'' + req.body.Valor + '\'';
+
+   app.post('/transferencia', (req, res) => {
+    const codigoOrigem = req.body.CodigoCorrentistaOrigem;
+    const codigoDestino = req.body.CodigoCorrentistaDestino;
+    const valor =  req.body.Valor;
     conn.connect().then((pool) => {
-      const queryStr = `EXEC spTransferencia ${codigoOrigem}, ${codigoDestino}, ${valor}`
-      pool.query(queryStr).then((rows) => {
-        res.status(201).send(rows.recordset)
-      })
+      pool.request()
+        .input('CodigoCorrentistaOrigem', codigoOrigem)
+        .input('CodigoCorrentistaDestino', codigoDestino)
+        .input('Valor', valor)
+        .execute(`spTransferencia`).then((rows) => {
+          res.status(201).send(rows.recordset)
+        })
     })
   })
-  
-  app.get('/extrato', (req, res) => {
-    const codigo =  '\'' + req.body.CodigoCorrentista + '\'';
-    const DataInicial = '\'' + req.body.DataInicial  + '\'';
-    const DataFinal = '\'' + req.body.DataFinal  + '\'';
+ 
+  app.get('/extrato/:codigo/:dataInicial/:dataFinal', (req, res) => {
+    const codigo =  req.params.codigo;
+    const dataInicial = req.params.dataInicial;
+    const dataFinal = req.params.dataFinal;
     conn.connect().then((pool) => {
-      const queryStr = `EXEC spExtratoCorrentista ${codigo}, ${DataInicial}, ${DataFinal}`
-      pool.query(queryStr).then((rows) => {
-        res.status(201).send(rows.recordset)
-      })
+      pool.request()
+        .input('CodigoCorrentista', codigo)
+        .input('DataInicial', dataInicial)
+        .input('DataFinal', dataFinal)
+        .execute(`spExtratoCorrentista`).then((rows) => {
+          res.status(201).send(rows.recordset)
+        })
     })
   })
   

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 
 @Injectable({
@@ -44,31 +44,17 @@ export class AppService {
     });
   }
 
-  sendTransferencia(nome: any, nomeDestino: any, saldo: any): Observable<any>{
-    return this.http.post(`${this.url}/transferencia/${nome}`, {
+  sendTransferencia(nome: number, nomeDestino: number, valor: number): Observable<any>{
+    return this.http.post(`${this.url}/transferencia`, {
+      "CodigoCorrentistaOrigem": nome,
       "CodigoCorrentistaDestino": nomeDestino,
-      "Valor": saldo}
+      "Valor": valor}
     );
   }
 
 
-
   sendExtrato(nome: any, dataInicial: any, dataFinal: any): Observable<any>{
-    const httpOptions : Object = {
-      headers: new HttpHeaders({
-        'Accept': 'text/html',
-        'Content-Type': 'text/plain; charset=utf-8'
-      }),
-      responseType: 'text',
-      body:{
-        "CogigoCorrentista": nome,
-        "DataInicial": dataInicial,
-        "DataFinal": dataFinal
-      }
-    };
-    let headers = {
-      
-    }
-    return this.http.get<any>(`${this.url}/extrato`,httpOptions);
+    return this.http.get(`${this.url}/extrato/${nome}/${dataInicial}/${dataFinal}`)
   }
+
 }

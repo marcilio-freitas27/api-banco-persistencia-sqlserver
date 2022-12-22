@@ -1,18 +1,18 @@
 <form class=" container form-control">
     <h2>Extrato</h2>
     <div>
-      <label for="cliente">Id </label>
-      <input class="form-control" id="id" name="id" #id>
+      <label for="id">Id </label>
+      <input class="form-control" id="id" name="id" type="text" #id>
       <br>
       <label for="inicio">Data Inicial: </label>
-      <input class="form-control" id="inicio" name="email" #dataInicio>
+      <input class="form-control" id="inicio" name="inicio" type="text" #dataInicio>
       <br>
       <label for="final">Data FInal: </label>
-      <input class="form-control" id="final" name="saldo" #dataFim>
+      <input class="form-control" id="final" name="final" type="text" #dataFim>
     </div>
     <br>
     <div>
-      <button class="btn btn-danger" (click)="extrato(id.value, dataInicio.value, dataFim.value)">Extrato</button>
+      <a type="button" class="btn btn-danger" (click)="extrato(id.value, dataInicio.value, dataFim.value)">Extrato</a>
     </div>
   </form>
 <br>
@@ -21,7 +21,7 @@
         <h5>Extrato</h5>  
     </div>
     <div class="form-control">
-      {{extratoCorrentista}}
+      {{extratoCorrentista | json}}
     </div>
   </div>
   

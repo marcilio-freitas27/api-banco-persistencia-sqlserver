@@ -18,8 +18,7 @@ export class CorrentistaComponent implements OnInit {
       nome,
       email,
       saldo
-    ).subscribe((data => {
-      console.log(data)}))
+    )
   }
 
 }
