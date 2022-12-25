@@ -7,8 +7,10 @@ import { AppService } from 'src/app/app.service';
   styleUrls: ['./saque.component.css']
 })
 export class SaqueComponent implements OnInit {
-
-  constructor(private app: AppService) { }
+  codigo: any;
+  constructor(private app: AppService) {
+    this.codigo = this.app.getCodigo();
+  }
 
   ngOnInit(): void {
   }

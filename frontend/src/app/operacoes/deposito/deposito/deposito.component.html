@@ -2,13 +2,13 @@
   <h1>Depósito</h1>
     <div>
       <label for="id">Código: </label>
-      <input class="form-control" id="id" name="id" #id>
+      <input [(ngModel)]="codigo" class="form-control" id="id" name="id">
       <br>
       <label for="valor">Valor: </label>
       <input class="form-control" id="valor" name="valor" type="text" #valor>
     </div>
     <br>
     <div>
-      <button class="btn btn-danger" (click)="deposito(id.value, valor.value)">Depositar</button>
+      <input type="button" class="btn btn-danger" (click)="deposito(codigo, valor.value)" value="Depositar">
     </div>
   </form>

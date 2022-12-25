@@ -7,8 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./transferencia.component.css']
 })
 export class TransferenciaComponent implements OnInit {
-
-  constructor(private app: AppService) { }
+  codigo:any
+  constructor(private app: AppService) {
+    this.codigo = this.app.getCodigo();
+  }
 
   ngOnInit(): void {
   }

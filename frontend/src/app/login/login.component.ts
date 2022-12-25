@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { LoginService } from '../service/login.service';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-login',
@@ -11,47 +11,28 @@ import { LoginService } from '../service/login.service';
 export class LoginComponent implements OnInit {
   usuario = '';
   senha = '';
+  codigo: any;
   constructor(
     private loginService: LoginService,
+    private app: AppService,
     private route: Router,
-    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
   }
 
-  showSuccess(mensagem: string) {
-    this.toastr.success(mensagem);
+  login(usuario: any, senha: any){
+    if(usuario === 'marcilio' && senha === '123'){
+      this.app.setCodigo(4);
+      this.codigo = this.app.getCodigo();
+      this.route.navigate(['/home']);
+    }else{
+      window.alert('Usuario ou senha incorretos.')
+    }
   }
 
-  showError(mensagem: string) {
-    this.toastr.error(mensagem);
+  logar(usuario: any, senha:any): void{
+    this.codigo = this.app.getCodigo();
+    this.loginService.login(usuario, senha)
   }
-
-  onSubmit(): void {
-    // if (this.loginService.onLogin(this.usuario, this.senha)) {
-    //   //redireciona para a raiz
-    //   this.route.navigate(['/']);
-    //   this.showSuccess(`Bem vindo ${this.usuario}`);
-    // }else {
-    //   this.showError('Usuario ou senha incorretos.');
-    // }
-  }
-
-  submit(): void {
-    this.loginService
-      .login(this.usuario, this.senha)
-      .pipe()
-      .subscribe({
-        next: () => {
-          this.route.navigate(['/']);
-        },
-        error: () => {
-          this.showError(
-            `Usuario ou senha incorretos. Usuario: ${this.usuario}, Senha: ${this.senha}`
-          );
-        },
-      });
-  }
-
 }

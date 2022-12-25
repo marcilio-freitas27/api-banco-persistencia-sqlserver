@@ -10,7 +10,9 @@ export class ExtratoComponent implements OnInit {
 
   extratoCorrentista: any;
   modal: boolean = true;
+  codigo: any;
   constructor(private app: AppService) {
+    this.codigo = this.app.getCodigo();
   }
 
   ngOnInit(): void {

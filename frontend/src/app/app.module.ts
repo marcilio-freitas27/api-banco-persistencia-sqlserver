@@ -11,6 +11,8 @@ import { PagamentoComponent } from './operacoes/pagamento/pagamento.component';
 import { TransferenciaComponent } from './operacoes/transferencia/transferencia.component';
 import { CorrentistaComponent } from './cadastros/correntista/correntista.component';
 import { ExtratoComponent } from './operacoes/extrato/extrato.component';
+import { FormsModule } from '@angular/forms';
+import { LayoutComponent } from './layout/layout/layout.component';
 
 @NgModule({
   declarations: [
@@ -22,9 +24,11 @@ import { ExtratoComponent } from './operacoes/extrato/extrato.component';
     PagamentoComponent,
     TransferenciaComponent,
     CorrentistaComponent,
-    ExtratoComponent
+    ExtratoComponent,
+    LayoutComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule

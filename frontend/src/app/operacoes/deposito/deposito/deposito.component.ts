@@ -7,8 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./deposito.component.css']
 })
 export class DepositoComponent implements OnInit {
-
-  constructor(private app: AppService) { }
+  codigo:any
+  constructor(private app: AppService) {
+    this.codigo = this.app.getCodigo();
+   }
 
   ngOnInit(): void {
   }

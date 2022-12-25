@@ -1,37 +1,48 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { AppService } from '../app.service';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  jwtauth: string;
-  constructor(private http: HttpClient) { 
-    this.jwtauth = 'http://localhost:5000';
+  url: string;
+  text: any
+  constructor(
+    private http: HttpClient,
+    private route: Router,
+    private app: AppService
+    ) {
+    this.url = 'http://localhost:5000';
   }
 
-  login(usuario: any, senha: any): Observable<boolean> {
-    return this.http
-      .post<{ token: string }>(`${this.jwtauth}/login`, {
-        usuario: usuario,
-        senha: senha,
-      })
-      .pipe(
-        map((result: { token: string }) => {
-          localStorage.setItem('access_token', result.token);
-          return true;
-        })
-      );
+  login(usuario: any, senha:any): Observable<any>{
+    let result: any;
+    this.http.get(`${this.url}/correntista`).subscribe(
+      {
+      next: (res: any) => {
+        let count = 0;
+        res.map((data: any)=> {
+          if (data.NomeCorrentista === usuario && data.Email === senha){
+            this.app.setCodigo(data.CodigoCorrentista)
+            localStorage.setItem('dados', usuario+senha);
+            count++
+            result = this.route.navigate(['/layout/home']);
+          }
+        });
+        if(count === 0){
+          result =  window.alert('Usuario ou senha incorretos.')
+        }
+      }
+    })
+    return result;
   }
 
-  logout(): boolean {
-    localStorage.removeItem('access_token');
-    return true;
+  logout(): void{
+    localStorage.removeItem('dados');
+    this.route.navigate(['/login']);
   }
 
-  public get loggedIn(): boolean {
-    return localStorage.getItem('access_token') !== null;
-  }
 }

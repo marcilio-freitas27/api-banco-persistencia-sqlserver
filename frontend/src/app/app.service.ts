@@ -7,12 +7,25 @@ import { map, Observable } from 'rxjs';
 })
 export class AppService {
   url: string
+  codigo: any
   constructor(private http: HttpClient) {
     this.url = "http://localhost:5000";
   }
 
+  getCodigo(){
+    return this.codigo;
+  }
+
+  setCodigo(value: any){
+    this.codigo = value;
+  }
+
   getCorrentistas(): Observable<any>{
     return this.http.get<any>(`${this.url}/correntista`);
+  }
+
+  getCorrentistasId(id: any): Observable<any>{
+    return this.http.get(`${this.url}/correntista/${id}`)
   }
 
   sendCorrentistas(nome: string, email: string, saldo: any): Observable<any>{

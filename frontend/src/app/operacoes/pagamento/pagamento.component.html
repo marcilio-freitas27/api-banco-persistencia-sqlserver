@@ -2,13 +2,13 @@
   <h1>Pagamento</h1>
     <div>
       <label for="id">Código: </label>
-      <input class="form-control" id="id" name="id" type="text" #id>
+      <input [(ngModel)]="codigo" class="form-control" id="id" name="id" type="text">
       <br>
       <label for="valor">Valor: </label>
       <input class="form-control" id="valor" name="valor" type="text" #valor>
     </div>
     <br>
     <div>
-      <button class="btn btn-danger" (click)="pagamento(id.value, valor.value)">Pagar</button>
+      <input class="btn btn-danger" (click)="pagamento(codigo, valor.value)" value="Pagar">
     </div>
   </form>

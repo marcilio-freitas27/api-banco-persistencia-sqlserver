@@ -7,19 +7,28 @@ import { AppService } from '../app.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  correntistas: any[];
+  correntistas: any;
+  correntista: any[];
   show: boolean
+  codigo: any
   constructor(private app: AppService) {
-    this.correntistas = [];
     this.show = false;
+    this.codigo = this.app.getCodigo();
+    this.correntista = [];
    }
 
   ngOnInit(): void {
-    this.app.getCorrentistas().subscribe({
+    this.app.getCorrentistasId(this.codigo).subscribe({
       next: (res: any) => {
         this.correntistas = res
       }
     });
+
+    this.app.getCorrentistas().subscribe({
+      next:(res:any) =>{
+        this.correntista = res;
+      }
+    })
   }
 
   showSaldo(){

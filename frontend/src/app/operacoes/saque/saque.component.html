@@ -2,13 +2,13 @@
   <h1>Saque</h1>
     <div>
       <label for="id">Código: </label>
-      <input class="form-control" id="id" name="id" #id>
+      <input [(ngModel)]="codigo" class="form-control" id="id" name="id">
       <br>
       <label for="valor">Valor: </label>
       <input class="form-control" id="valor" name="valor" type="text" #valor>
     </div>
     <br>
     <div>
-      <button class="btn btn-danger" (click)="saque(id.value, valor.value)">Sacar</button>
+      <input class="btn btn-danger" (click)="saque(codigo, valor.value)" value="Sacar">
     </div>
   </form>

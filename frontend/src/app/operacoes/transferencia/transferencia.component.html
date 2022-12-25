@@ -2,7 +2,7 @@
     <h2>Transferência</h2>
     <div>
       <label for="cliente">Origem </label>
-      <input class="form-control" id="codigo" name="codigo" type="text" #codigo>
+      <input [(ngModel)]="codigo" class="form-control" id="codigo" name="codigo" type="text">
       <br>
       <label for="email">Destino: </label>
       <input class="form-control" id="codigoDestino" name="codigoDestino" type="text" #codigoDestino>
@@ -12,6 +12,6 @@
     </div>
     <br>
     <div>
-      <button class="btn btn-danger" (click)="transferencia(codigo.value, codigoDestino.value, valor.value)">Transferir</button>
+      <input class="btn btn-danger" (click)="transferencia(codigo, codigoDestino.value, valor.value)" value="Transferir">
     </div>
   </form>

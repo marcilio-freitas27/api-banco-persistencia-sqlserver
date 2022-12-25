@@ -2,7 +2,7 @@
     <h2>Extrato</h2>
     <div>
       <label for="id">Id </label>
-      <input class="form-control" id="id" name="id" type="text" #id>
+      <input [(ngModel)]="codigo" class="form-control" id="id" name="id" type="text">
       <br>
       <label for="inicio">Data Inicial: </label>
       <input class="form-control" id="inicio" name="inicio" type="text" #dataInicio>
@@ -12,17 +12,27 @@
     </div>
     <br>
     <div>
-      <a type="button" class="btn btn-danger" (click)="extrato(id.value, dataInicio.value, dataFim.value)">Extrato</a>
+      <a type="button" class="btn btn-danger" (click)="extrato(codigo, dataInicio.value, dataFim.value)">Extrato</a>
     </div>
   </form>
 <br>
   <div [hidden]="modal" class="container form-control">
     <div class="form-control">
-        <h5>Extrato</h5>  
+        <h5>Extrato</h5>
     </div>
-    <div class="form-control">
-      {{extratoCorrentista | json}}
+    <div [hidden]="i.toString() !== codigo" *ngFor="let dado of extratoCorrentista; index as i" class="form-control">
+      <ng-container *ngIf="i.toString() === codigo">
+        <p>
+          Operação: {{dado.TipoTransacao | json}}
+        </p>
+        <p>
+          Data da Operação: {{dado.DataOperacao | json}}
+        </p>
+        <p>
+          Valor: {{dado.Valor | json}}
+        </p>
+      </ng-container>
     </div>
   </div>
-  
+
 

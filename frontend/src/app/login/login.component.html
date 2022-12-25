@@ -1,17 +1,25 @@
-<!-- <p-card>
-    <h1>Login no sistema</h1>
-    <hr />
-    <form (ngSubmit)="submit()">
-      <span>
-        Login: <input name="usuario" [(ngModel)]="usuario" type="text" pInputText />
-      </span>
-      <br><br>
-      <span>
-        Password:
-        <p-password name="senha" [(ngModel)]="senha" [toggleMask]="true"></p-password>
-      </span>
-      <p>
-        <button type="submit" pButton label="Entrar"></button>
-      </p>
+
+  <div class="my-5 container border bg-danger">
+    <div class="m-3">
+      <h1 class="text-white">Login</h1>
+    </div>
+    <form>
+      <div class="m-3">
+        <span>
+          <label class="text-white" for="usario">Login: </label>
+          <input class="form-control" id="ususario" name="usuario" type="text" #usuario/>
+        </span>
+      </div>
+      <div class="m-3">
+        <span>
+          <label class="text-white" for="senha">Password: </label>
+          <input type="password" class="form-control" id="senha" name="senha" #senha>
+        </span>
+      </div>
+      <div class="m-3">
+        <input class="btn btn-primary" (click)="logar(usuario.value, senha.value)" type="button" value="Entrar">
+      </div>
     </form>
-  </p-card> -->
+
+  </div>
+

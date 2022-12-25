@@ -1,44 +1,41 @@
-
-<h1>Bem-vindos</h1>
-<div class="containet form-control">
-  <div *ngFor="let cor of correntistas;">
+<div class="container border">
+  <div>
     <p>
-      Nome: {{ cor.NomeCorrentista }}
+      Nome: {{ correntistas?.NomeCorrentista }}
     </p>
+  </div>
+  <div>
     <button class="btn btn-danger" (click)="showSaldo()">Mostrar Saldo</button>
+  </div>
+  <div class="m-3">
     <span [hidden]="!show">
-      <br><br>
-      Saldo: R${{ cor.Saldo }}
+      Saldo: R${{ correntistas?.Saldo }}
     </span>
-    <br><br>
   </div>
 </div>
 
-<br>
+<p>
 
-<div class="container form-control">
-  <h2>Operações</h2>
-  <div>
-    <button class="btn btn-primary" routerLink="/deposito">Deposito</button>
+</p>
+
+<div class="container border">
+  <h2 class="text-center">Operações</h2>
+  <div class="column">
+    <div class="m-3">
+      <button class="btn btn-primary" routerLink="/layout/deposito">Deposito</button>
+    </div>
+    <div class="m-3">
+      <button class="btn btn-primary" routerLink="/layout/saque">Saque</button>
+    </div>
+    <div class="m-3">
+      <button class="btn btn-primary" routerLink="/layout/pagamento">Pagamento</button>
+    </div>
+    <div class="m-3">
+      <button class="btn btn-primary" routerLink="/layout/transferencia">Transferencia</button>
+    </div>
+    <div class="m-3">
+      <button class="btn btn-primary" routerLink="/layout/extrato">Extrato</button>
+    </div>
   </div>
-  <br>
-  <div>
-    <button class="btn btn-primary" routerLink="/saque">Saque</button>
-  </div>
-  <br>
-  <div>
-    <button class="btn btn-primary" routerLink="/pagamento">Pagamento</button>
-  </div>
-  <br>
-  <div>
-    <button class="btn btn-primary" routerLink="/transferencia">Transferencia</button>
-  </div>
-  <br>
-  <div>
-    <button class="btn btn-primary" routerLink="/extrato">Extrato</button>
-  </div>
-  <br>
-  <div>
-    <button class="btn btn-primary" routerLink="/cadastros/correntista">Cadastro</button>
-  </div>
+
 </div>
