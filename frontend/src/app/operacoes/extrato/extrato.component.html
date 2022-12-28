@@ -20,8 +20,8 @@
     <div class="form-control">
         <h5>Extrato</h5>
     </div>
-    <div [hidden]="i.toString() !== codigo" *ngFor="let dado of extratoCorrentista; index as i" class="form-control">
-      <ng-container *ngIf="i.toString() === codigo">
+    <div *ngFor="let dado of extratoCorrentista; index as i" class="form-control">
+      <!-- <ng-container *ngIf="i.toString() === codigo"> -->
         <p>
           Operação: {{dado.TipoTransacao | json}}
         </p>
@@ -31,7 +31,7 @@
         <p>
           Valor: {{dado.Valor | json}}
         </p>
-      </ng-container>
+      <!-- </ng-container> -->
     </div>
   </div>
 
