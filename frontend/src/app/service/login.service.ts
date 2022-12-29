@@ -27,7 +27,7 @@ export class LoginService {
         res.map((data: any)=> {
           if (data.NomeCorrentista === usuario && data.Email === senha){
             this.app.setCodigo(data.CodigoCorrentista)
-            localStorage.setItem('dados', usuario+senha);
+            localStorage.setItem('dados', usuario + ' ' + ' ' + senha);
             count++
             result = this.route.navigate(['/layout/home']);
           }
@@ -41,7 +41,7 @@ export class LoginService {
   }
 
   logout(): void{
-    localStorage.removeItem('dados');
+    localStorage.clear();
     this.route.navigate(['/login']);
   }
 

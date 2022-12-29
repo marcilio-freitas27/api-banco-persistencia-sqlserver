@@ -86,10 +86,10 @@ app.get('/', (req,res) => {
     })
   })
 
-   app.post('/transferencia', (req, res) => {
-    const codigoOrigem = req.body.CodigoCorrentistaOrigem;
-    const codigoDestino = req.body.CodigoCorrentistaDestino;
-    const valor =  req.body.Valor;
+   app.post('/transferencia/:codigoOrigem/:codigoDestino/:valor', (req, res) => {
+    const codigoOrigem = req.params.codigoOrigem;
+    const codigoDestino = req.params.codigoDestino;
+    const valor =  req.params.valor;
     conn.connect().then((pool) => {
       pool.request()
         .input('CodigoCorrentistaOrigem', codigoOrigem)

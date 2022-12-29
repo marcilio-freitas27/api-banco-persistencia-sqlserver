@@ -1,13 +1,13 @@
 const mssql = require('mssql/msnodesqlv8');
 
 const conn = new mssql.ConnectionPool({
-    // server: 'localhost',
+    server: 'localhost',
     database: 'DEVCORP2',
-    // password: 'Sql2@19',
+    password: 'Sql2@19',
     driver: "msnodesqlv8",
-    server: 'SISTEMA-SSD\\SQLEXPRESS',
+    // server: 'SISTEMA-SSD\\SQLEXPRESS',
     user: 'sa',
-    password: '_43690'
+    // password: '_43690'
 })
 
 module.exports = conn;

@@ -12,7 +12,8 @@ import { LayoutComponent } from './layout/layout/layout.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: "layout", component: LayoutComponent,
+  { path: '', redirectTo: '/login', pathMatch:'full' },
+  { path: 'layout', component: LayoutComponent,
     children: [
       { path: 'home', component: HomeComponent },
       { path: 'deposito', component: DepositoComponent },

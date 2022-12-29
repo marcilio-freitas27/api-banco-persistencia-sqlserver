@@ -15,9 +15,9 @@ export class TransferenciaComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  transferencia(codigo: any, codigoDestino: any, valor:any ):void{
+  transferencia(codigoOrigem: any, codigoDestino: any, valor:any ):void{
     this.app.sendTransferencia(
-      codigo,
+      codigoOrigem,
       codigoDestino,
       valor
     );
