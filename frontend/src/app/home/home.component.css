@@ -6,8 +6,9 @@
   justify-items: stretch;
 }
 
-button{
+.btn-saldo{
   width: 100%;
+  max-width: 200px;
 }
 
 

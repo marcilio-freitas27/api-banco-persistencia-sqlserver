@@ -1,11 +1,11 @@
-<div class="container border">
-  <div>
+<div class="container col-4 border text-center">
+  <div class="">
     <p>
       Nome: {{ correntistas?.NomeCorrentista }}
     </p>
   </div>
   <div>
-    <button class="btn btn-danger" (click)="showSaldo()">Mostrar Saldo</button>
+    <button class="btn btn-danger btn-saldo" (click)="showSaldo()">Mostrar Saldo</button>
   </div>
   <div class="m-3">
     <span [hidden]="!show">
@@ -18,7 +18,7 @@
 
 </p>
 
-<div class="container border">
+<div class="container border col-6 text-center">
   <h2 class="text-center">Operações</h2>
   <div class="column">
     <div class="m-3">
